@@ -65,6 +65,10 @@ public class OrangeHrmApp
 	    {
 	    	Reporter.log("system shown dashboard",true);
 	    }
+	    else
+	    {
+	    	Reporter.log("system doesn't show dashboard",true);
+	    }
 	}
 	@When("i click logout link")
 	public void i_click_logout_link() 
@@ -76,5 +80,18 @@ public class OrangeHrmApp
 	public void close_the_browser() 
 	{
 	   driver.quit(); 
+	}
+	@Then("i should see err messege")
+	public void i_should_see_err_messege() 
+	{
+		String act_data = driver.findElement(By.xpath("//span[@id='spanMessage']")).getText();
+		if(act_data.contains("Invalid")||act_data.contains("empty"))
+		{
+			Reporter.log("system generated appropriate messege",true);
+		}
+		else
+		{
+			Reporter.log("system doesn't generated appropriate messege",true);
+		}
 	}
 }

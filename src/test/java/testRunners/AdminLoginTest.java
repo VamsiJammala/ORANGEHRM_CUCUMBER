@@ -7,9 +7,9 @@ import io.cucumber.testng.CucumberOptions;
 		features = "FeatureFiles",
 		glue = "stepDefinitions",
 		dryRun = false,
+		tags = "@tag2",
 		plugin = {"pretty","html:target/AdminLoginTest.html"}
 )
-public class AdminLoginTest extends AbstractTestNGCucumberTests
-{
+public class AdminLoginTest extends AbstractTestNGCucumberTests{
 
 }
