@@ -4,12 +4,12 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
-		features = "FeatureFiles/AdminLogin.feature",
+		features = "FeatureFiles/AddEmployee.feature",
 		glue = "stepDefinitions",
+		tags = "@tag3",
 		dryRun = false,
-		tags = "@tag2",
-		plugin = {"pretty","html:target/AdminLoginTest.html"}
-)
-public class AdminLoginTest extends AbstractTestNGCucumberTests{
+		plugin = {"pretty","html:target/AddEmployee.html"}
+		)
+public class AddEmployeeTest extends AbstractTestNGCucumberTests {
 
 }

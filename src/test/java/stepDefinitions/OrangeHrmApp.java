@@ -14,6 +14,7 @@ import io.cucumber.java.en.When;
 public class OrangeHrmApp 
 {
 	WebDriver driver;
+	String emp_id="";
 	
 	@Given("launch chrome browser")
 	public void launch_chrome_browser() 
@@ -93,5 +94,43 @@ public class OrangeHrmApp
 		{
 			Reporter.log("system doesn't generated appropriate messege",true);
 		}
+	}
+	@When("i click addemployee link")
+	public void i_click_addemployee_link() 
+	{
+	    driver.findElement(By.linkText("PIM")).click();
+	    driver.findElement(By.linkText("Add Employee")).click();
+	}
+	@When("i enter first name as {string}")
+	public void i_enter_first_name_as(String fname) 
+	{
+	    driver.findElement(By.xpath("//input[@id='firstName']")).sendKeys(fname);
+	}
+	@When("i enter last name as {string}")
+	public void i_enter_last_name_as(String lname) 
+	{
+	    driver.findElement(By.xpath("//input[@id='lastName']")).sendKeys(lname);
+	}
+	@When("i click save emp button")
+	public void i_click_save_emp_button() 
+	{
+		emp_id = driver.findElement(By.xpath("//input[@id='employeeId']")).getAttribute("value");
+	    driver.findElement(By.xpath("//input[@id='btnSave']")).click();
+	}
+	@Then("i should see employee in emptable")
+	public void i_should_see_employee_in_emptable() 
+	{
+	    driver.findElement(By.linkText("Employee List")).click();
+	    driver.findElement(By.id("empsearch_id")).sendKeys(emp_id);
+	    driver.findElement(By.id("searchBtn")).click();
+	    String res= driver.findElement(By.xpath("//table[@id='resultTable']/tbody/tr/td[2]/a")).getText();
+	    if(emp_id.equals(res))
+	    {
+	    	Reporter.log("Employee Added Successfully",true);
+	    }
+	    else
+	    {
+	    	Reporter.log("Employee Adding is Unsuccessful",true);
+	    }
 	}
 }
